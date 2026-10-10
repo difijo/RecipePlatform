@@ -1,0 +1,42 @@
+﻿@model RecipePlatform.Core.Entities.Recipe
+
+@{
+    ViewData["Title"] = "Delete recipe";
+    var returnUrl = Url.Action("Index", "Recipes", new { area = "Admin" });
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<div class="alert alert-warning">
+    <h4 class="alert-heading">Are you sure?</h4>
+    <p>You are about to delete the recipe:</p>
+    <p><strong>@Model.Title</strong></p>
+    <p><em>@Model.Description</em></p>
+</div>
+
+<form asp-action="Delete" asp-controller="Recipes" asp-area="Admin" method="post" id="deleteForm">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="d-flex">
+        <button type="submit" class="btn btn-danger me-2">Yes, delete</button>
+
+        <button type="button" class="btn btn-secondary" id="btnCancel">No, go back</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        (function(){
+            var btn = document.getElementById('btnCancel');
+            if (!btn) return;
+
+            btn.addEventListener('click', function (e) {
+                var url = '@(returnUrl)';
+                if (!url || url === '') {
+                    url = '/Admin/Recipes';
+                }
+                window.location.href = url;
+            });
+        })();
+    </script>
+}

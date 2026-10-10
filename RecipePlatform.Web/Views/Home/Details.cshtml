@@ -1,0 +1,23 @@
+﻿@model RecipePlatform.Core.Entities.Recipe
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h1 class="card-title mb-3">@Model.Title</h1>
+        <h5 class="text-muted mb-3">@Model.Category?.Name</h5>
+        <p class="card-text">@Model.Description</p>
+
+        <h4 class="mt-4">Ингредиенты</h4>
+        <ul class="list-group mb-3">
+            @foreach (var ri in Model.RecipeIngredients)
+            {
+                <li class="list-group-item">@ri.Ingredient.Name</li>
+            }
+        </ul>
+
+        <a asp-action="Index" class="btn btn-secondary">Back to recepi</a>
+    </div>
+</div>

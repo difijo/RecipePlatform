@@ -1,0 +1,32 @@
+﻿@model IEnumerable<RecipePlatform.Core.Entities.Recipe>
+
+@{
+    ViewData["Title"] = "Recipe management";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Diskr</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model)
+        {
+            <tr>
+                <td>@recipe.Title</td>
+                <td>@recipe.Category?.Name</td>
+                <td>@(recipe.Description?.Length > 50 ? recipe.Description.Substring(0, 50) + "..." : recipe.Description)</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@recipe.Id" asp-area="Admin">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "Recipes", new { area = "Admin", id = recipe.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
