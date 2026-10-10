@@ -22,4 +22,4 @@ This project was created to practice application development with C# and .NET, f
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/difijo/RecipePlatform.git](https://github.com/difijo/RecipePlatform.git)
+   git clone https://github.com/difijo/RecipePlatform.git
